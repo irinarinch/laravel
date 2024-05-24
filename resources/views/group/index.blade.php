@@ -12,5 +12,5 @@
     </ul>  
     <button>
         <a href="{{ route('groups.create') }}">Новая группа</a> 
-    </button>       
+    </button>    
 @endsection

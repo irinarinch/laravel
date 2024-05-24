@@ -31,8 +31,8 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-                'title' => 'string',
-                'start_from' => 'date',
+            'title' => 'string',
+            'start_from' => 'date',
         ]);
         $today = new \DateTime();
         $data['is_active'] = $data['start_from'] < $today->format('Y-m-d') ? true : false;
