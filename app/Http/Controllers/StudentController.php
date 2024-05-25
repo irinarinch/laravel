@@ -31,9 +31,8 @@ class StudentController extends Controller
     public function store($group)
     {
         $data = request()->validate([
-            'surname' => 'string',
-            'name' => 'string',
-            'created_at' => 'string',
+            'surname' => 'required|max:255',
+            'name' => 'required|max:255',            
         ]);
         $data['group_id'] = $group;
         Student::create($data);
@@ -47,29 +46,5 @@ class StudentController extends Controller
     public function show(Group $group, Student $student)
     {      
         return view('student.show', compact('group', 'student'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Student $student)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Student $student)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Student $student)
-    {
-        //
     }
 }

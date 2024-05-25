@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,4 +20,6 @@ Route::get('/groups/{group}/students/create', [StudentController::class, 'create
 Route::post('/groups/{group}/students', [StudentController::class, 'store'])->name('students.store');
 Route::get('/groups/{group}/students/{student}', [StudentController::class, 'show'])->name('students.show');
 
-// Auth::routes();
+Route::get('/profile', [UserController::class, 'show'])->name('users.show')->middleware('auth');
+
+Auth::routes();

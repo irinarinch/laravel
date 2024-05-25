@@ -31,11 +31,11 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'title' => 'string',
-            'start_from' => 'date',
+            'title' => 'required|unique:groups|max:255',
+            'start_from' => 'required',
         ]);
         $today = new \DateTime();
-        $data['is_active'] = $data['start_from'] < $today->format('Y-m-d') ? true : false;
+        $data['is_active'] = $data['start_from'] < $today->format('Y-m-d');
 
         Group::create($data);
 
@@ -49,29 +49,5 @@ class GroupController extends Controller
     {      
         $students = (Student::where('group_id', $group->id)->get()); 
         return view('group.show', compact('group', 'students'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Group $group)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Group $group)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Group $group)
-    {
-        //
     }
 }
